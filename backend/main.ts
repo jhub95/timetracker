@@ -1,5 +1,5 @@
 import path from 'node:path'
-import { app, BrowserWindow, ipcMain } from 'electron'
+import { app, BrowserWindow, ipcMain, Menu, MenuItem, session } from 'electron'
 import log from 'electron-log'
 import electronUpdater from 'electron-updater'
 import electronIsDev from 'electron-is-dev'
@@ -12,7 +12,11 @@ const __dirname = dirname(__filename)
 const { autoUpdater } = electronUpdater
 let appWindow: BrowserWindow | null = null
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const store = new ElectronStore()
+
+const storeSchema = {
+    launchAtStart: true
+}
+const store = new ElectronStore(storeSchema);
 
 class AppUpdater {
 	constructor() {
@@ -54,10 +58,17 @@ const spawnAppWindow = async () => {
 	const PRELOAD_PATH = path.join(__dirname, 'preload.js')
 
 	appWindow = new BrowserWindow({
-		width: 800,
-		height: 600,
+		width: 1200,
+		height: 800,
 		icon: getAssetPath('icon.png'),
 		show: false,
+		frame: false,
+        titleBarStyle: 'hidden',
+        titleBarOverlay: {
+            color: '#2f3241',
+            height: 40,
+            symbolColor: '#74b1be'
+        },
 		webPreferences: {
 			preload: PRELOAD_PATH,
 		},
@@ -68,11 +79,11 @@ const spawnAppWindow = async () => {
 			? 'http://localhost:3000'
 			: `file://${path.join(__dirname, '../../frontend/build/index.html')}`
 	)
-	appWindow.maximize()
+	//appWindow.maximize()
 	appWindow.setMenu(null)
 	appWindow.show()
 
-	if (electronIsDev) appWindow.webContents.openDevTools({ mode: 'right' })
+	//if (electronIsDev) appWindow.webContents.openDevTools({ mode: 'right' })
 
 	appWindow.on('closed', () => {
 		appWindow = null
@@ -82,6 +93,14 @@ const spawnAppWindow = async () => {
 app.on('ready', () => {
 	new AppUpdater()
 	spawnAppWindow()
+	session.defaultSession.webRequest.onHeadersReceived((details, callback) => {
+        callback({
+          responseHeaders: {
+            ...details.responseHeaders,
+            'Content-Security-Policy': ['default-src \'self\' \'unsafe-inline\' ']
+          }
+        })
+      })
 })
 
 app.on('window-all-closed', () => {
