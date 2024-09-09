@@ -1577,15 +1577,15 @@ __metadata:
   linkType: hard
 
 "@chromatic-com/storybook@npm:1":
-  version: 1.4.0
-  resolution: "@chromatic-com/storybook@npm:1.4.0"
+  version: 1.9.0
+  resolution: "@chromatic-com/storybook@npm:1.9.0"
   dependencies:
-    chromatic: "npm:^11.3.2"
+    chromatic: "npm:^11.4.0"
     filesize: "npm:^10.0.12"
     jsonfile: "npm:^6.1.0"
     react-confetti: "npm:^6.1.0"
     strip-ansi: "npm:^7.1.0"
-  checksum: 10c0/4b4ae546358b46d1a515fb5eb7110263eda9f59062702aea3deabd27a0f1554c778a2735d26824080ed9e833890808afbd603b89cc093bda83b7de96ad4102fd
+  checksum: 10c0/c4b0fbfcb3394c2814e445471b1528179c2144d70d4a13c9a70545c2f2052c6366f73893b16e1490e658d43d905fc726bbb78d7c126c839a3c7ee3d8f3ad21c2
   languageName: node
   linkType: hard
 
@@ -6156,9 +6156,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chromatic@npm:^11.3.2":
-  version: 11.3.5
-  resolution: "chromatic@npm:11.3.5"
+"chromatic@npm:^11.4.0":
+  version: 11.7.1
+  resolution: "chromatic@npm:11.7.1"
   peerDependencies:
     "@chromatic-com/cypress": ^0.*.* || ^1.0.0
     "@chromatic-com/playwright": ^0.*.* || ^1.0.0
@@ -6171,7 +6171,7 @@ __metadata:
     chroma: dist/bin.js
     chromatic: dist/bin.js
     chromatic-cli: dist/bin.js
-  checksum: 10c0/79022edd2b3a685cd3166dac886a47a2bf87d72f4b553d04ccab9a19bd784eabdf5e6f906796a7b645f9b2094ab585c2be7ff01a208a3af6fbf495b33adce634
+  checksum: 10c0/367dd36994062a82114859a746b84607fa3b3f5783dca28c015d0b490c4bff58f58ef3247be6b4c3f9be57ac7f91a6ead3261bac75befa1707c083415f36dc55
   languageName: node
   linkType: hard
 
